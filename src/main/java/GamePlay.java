@@ -134,7 +134,7 @@ public class GamePlay implements GamePlayInterface {
             }else if(character.getClass().getName() == new Druid().getClass().getName()){
                 character.damage += 10;
                 character.speed += 0.25;
-                character.protection = character.protection += 2;
+                character.protection += 2;
             }else if(character.getClass().getName() == new Ranger().getClass().getName()){
                 character.damage += character.damage%10;
                 character.speed += 0.5;
