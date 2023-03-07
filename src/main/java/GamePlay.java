@@ -21,7 +21,7 @@ public class GamePlay implements GamePlayInterface {
     public GamePlay(Character character) {
         this.player = character;
         this.Opponents = new LinkedList<>();
-        addOpponent(new Wizard());
+        AddOpponent(new Wizard());
         this.Opponents.add(new Bard());
         this.Opponents.add(new Druid());
         this.Opponents.add(new Rogue());
@@ -49,7 +49,7 @@ public class GamePlay implements GamePlayInterface {
      * @return true if successful, false otherwise
      */
     @Override
-    public boolean addOpponent(Character opponent) {
+    public boolean AddOpponent(Character opponent) {
         if (this.Opponents.add(opponent)) return true;
         else return false;
     }
