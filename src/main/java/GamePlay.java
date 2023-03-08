@@ -78,8 +78,18 @@ public class GamePlay implements GamePlayInterface {
      */
     @Override
     public int dealDamage(Character character) {
-    System.out.println("Not Implemented here, your job in assign 3");
-    return 1;
+        int damage;
+        if (character.health > 0) {
+            if(character.health < 10) {
+                damage = 2 * character.damage;
+            } else {
+                damage = character.damage;
+            }
+            character.experience += damage;
+            return damage;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -102,8 +112,26 @@ public class GamePlay implements GamePlayInterface {
      */
     @Override
     public int takeDamage(Character character, int blowDamage) {
-        System.out.println("Not Implemented here your job in assign 3");
-        return 1;
+        int damageTaken = blowDamage - character.protection;
+        int absoluteDamageTaken = Math.abs(damageTaken);
+        int absoluteDamageTakenFloored = (int) Math.floor(absoluteDamageTaken / 2);
+        //if character protection is greater than blowDamage
+        if (damageTaken < 0) {
+            character.health += absoluteDamageTakenFloored;
+            character.experience += absoluteDamageTaken;
+            //return absoluteDamageTakenFloored;
+            return 0;
+        } else if (damageTaken >= 0) {
+            character.experience += absoluteDamageTakenFloored;
+            if (character.health - absoluteDamageTaken < 0) {
+                character.health = 0;
+                return character.health;
+            } else {
+                character.health -= absoluteDamageTaken;
+                return absoluteDamageTaken;
+            }
+        }
+        return damageTaken;
     }
 
     /**
@@ -183,7 +211,32 @@ public class GamePlay implements GamePlayInterface {
      */
     @Override
     public void attack(Character character, Character opponent) {
-        System.out.println("Not Implemented here your job in assign 3");
+        if(character.health < 0)
+            character.health = 0;
+        if(opponent.health < 0)
+            opponent.health = 0;
+
+        if (character.health > 0 && opponent.health > 0) {
+            int blow = this.dealDamage(character);
+            this.takeDamage(opponent, blow);
+            if (character.health > 0) {
+                this.levelUp(character);
+            }
+            if (opponent.health > 0) {
+                this.levelUp(opponent);
+            }
+
+            if (opponent.health > 0 && character.health > 0) {
+                blow = this.dealDamage(opponent);
+                this.takeDamage(character, blow);
+                if (character.health > 0) {
+                    this.levelUp(character);
+                }
+                if (opponent.health > 0) {
+                    this.levelUp(opponent);
+                }
+            }
+        }
     }
 
     /**
