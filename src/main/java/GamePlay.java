@@ -125,11 +125,12 @@ public class GamePlay implements GamePlayInterface {
             character.experience += absoluteDamageTakenFloored;
             if (character.health - absoluteDamageTaken < 0) {
                 character.health = 0;
-                return character.health;
             } else {
                 character.health -= absoluteDamageTaken;
-                return absoluteDamageTaken;
             }
+            //absoluteDamageTaken is returned for both if the chracter is going below or not below zero
+            //changed this because this is how the method is explained
+            return absoluteDamageTaken;
         }
         return damageTaken;
     }
@@ -266,14 +267,16 @@ public class GamePlay implements GamePlayInterface {
                 orderOfAttack[1] = opponent;
                 player.experience += Math.ceil(player.speed - opponent.speed);
                 } else {
-                orderOfAttack[1] = opponent;
-                orderOfAttack[0] = player;
+                //changed 271 to [0] from [1] and 272 to [1] from [0]
+                //changed this because otherwise speed doesn't determine the order of attack(player always go first)
+                orderOfAttack[0] = opponent;
+                orderOfAttack[1] = player;
                 opponent.experience += Math.ceil(opponent.speed - player.speed);
              }
 
             // attack in order
             attack(orderOfAttack[0], orderOfAttack[1]);
-            
+
         }
 
         // remove opponents that have <= 0 health
