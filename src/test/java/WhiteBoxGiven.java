@@ -111,7 +111,7 @@ public class WhiteBoxGiven {
         int opponentCountBefore = game.Opponents.size();
 
         assertEquals(0, game.play());
-        assertEquals(1, opponentCountBefore-game.Opponents.size());
+        assertEquals(1, opponentCountBefore - game.Opponents.size());
     }
 
     //Description Based Testing: Then the characters level up -- if health > 0
@@ -143,7 +143,7 @@ public class WhiteBoxGiven {
         game.addOpponent(Bar3);
         int opponentCountAfter = game.Opponents.size();
 
-        assertEquals(1, opponentCountAfter-opponentCountBefore);
+        assertEquals(1, opponentCountAfter - opponentCountBefore);
     }
 
     //Description Based Testing: Remove an opponent from the list of opponents
@@ -156,7 +156,7 @@ public class WhiteBoxGiven {
         game.removeOpponent(Bar2);
         int opponentCountAfter = game.Opponents.size();
 
-        assertEquals(-1, opponentCountAfter-opponentCountBefore);
+        assertEquals(-1, opponentCountAfter - opponentCountBefore);
     }
 
 }
