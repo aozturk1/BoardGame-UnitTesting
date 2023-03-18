@@ -159,32 +159,32 @@ public class GamePlay implements GamePlayInterface {
             character.health = 100; // level up resets health
 
             //SER316 TASK 2 SPOTBUGS FIX
-            if (character.getClass().getName().equals(new Barbarian().getClass().getName())) {
+            if (character.getClass().equals(Barbarian.class)) {
                 character.damage += 10;
                 character.speed = character.speed + 0.25;
                 character.protection += 2;
             //SER316 TASK 2 SPOTBUGS FIX
-            } else if (character.getClass().getName().equals(new Bard().getClass().getName())) {
+            } else if (character.getClass().equals(Bard.class)) {
                 character.damage += character.damage / 2;
                 character.speed += 0.5;
                 character.protection += character.protection / 2;
             //SER316 TASK 2 SPOTBUGS FIX
-            } else if (character.getClass().getName().equals(new Druid().getClass().getName())) {
+            } else if (character.getClass().equals(Druid.class)) {
                 character.damage += 10;
                 character.speed += 0.25;
                 character.protection = character.protection += 2;
             //SER316 TASK 2 SPOTBUGS FIX
-            } else if (character.getClass().getName().equals(new Ranger().getClass().getName())) {
+            } else if (character.getClass().equals(Ranger.class)) {
                 character.damage += character.damage % 10;
                 character.speed += 0.5;
                 character.protection += character.protection % 5;
             //SER316 TASK 2 SPOTBUGS FIX
-            } else if (character.getClass().getName().equals(new Rogue().getClass().getName())) {
+            } else if (character.getClass().equals(Rogue.class)) {
                 character.damage += character.damage / 3;
                 character.speed += 1.25;
                 character.protection += 3;
             //SER316 TASK 2 SPOTBUGS FIX
-            } else if (character.getClass().getName().equals(new Wizard().getClass().getName())) {
+            } else if (character.getClass().equals(Wizard.class)) {
                 character.damage += 5;
                 character.speed += 1;
                 character.protection += 1;
