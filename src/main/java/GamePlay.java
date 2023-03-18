@@ -3,7 +3,8 @@ import java.util.*;
 public class GamePlay implements GamePlayInterface {
     
     public Character player;
-    public List<Character> Opponents;
+    //SER316 TASK 2 SPOTBUGS FIX
+    public List<Character> opponents;
     public List<Character> remove;
     
     /**
@@ -20,13 +21,13 @@ public class GamePlay implements GamePlayInterface {
      */
     public GamePlay(Character character) {
         this.player = character;
-        this.Opponents = new LinkedList<>();
+        this.opponents = new LinkedList<>();
         addOpponent(new Wizard());
-        this.Opponents.add(new Bard());
-        this.Opponents.add(new Druid());
-        this.Opponents.add(new Rogue());
-        this.Opponents.add(new Ranger());
-        this.Opponents.add(new Barbarian());
+        this.opponents.add(new Bard());
+        this.opponents.add(new Druid());
+        this.opponents.add(new Rogue());
+        this.opponents.add(new Ranger());
+        this.opponents.add(new Barbarian());
     }
 
     /**
@@ -38,8 +39,8 @@ public class GamePlay implements GamePlayInterface {
      */
     public GamePlay(Character character, Character opponent) {
         this.player = character;
-        this.Opponents = new LinkedList<>();
-        this.Opponents.add(opponent);
+        this.opponents = new LinkedList<>();
+        this.opponents.add(opponent);
     }
 
     /**
@@ -50,7 +51,7 @@ public class GamePlay implements GamePlayInterface {
      */
     @Override
     public boolean addOpponent(Character opponent) {
-        if (this.Opponents.add(opponent)) {
+        if (this.opponents.add(opponent)) {
             return true;
         } else {
             return false;
@@ -65,7 +66,7 @@ public class GamePlay implements GamePlayInterface {
      */
     @Override
     public boolean removeOpponent(Character opponent) {
-        if (this.Opponents.remove(opponent)) {
+        if (this.opponents.remove(opponent)) {
             return true;
         } else {
             return false;
@@ -157,27 +158,33 @@ public class GamePlay implements GamePlayInterface {
             character.pointsPerLevel *= 2; // need more points to level up next time
             character.health = 100; // level up resets health
 
-            if (character.getClass().getName() == new Barbarian().getClass().getName()) {
+            //SER316 TASK 2 SPOTBUGS FIX
+            if (character.getClass().getName().equals(new Barbarian().getClass().getName())) {
                 character.damage += 10;
                 character.speed = character.speed + 0.25;
                 character.protection += 2;
-            } else if (character.getClass().getName() == new Bard().getClass().getName()) {
+            //SER316 TASK 2 SPOTBUGS FIX
+            } else if (character.getClass().getName().equals(new Bard().getClass().getName())) {
                 character.damage += character.damage / 2;
                 character.speed += 0.5;
                 character.protection += character.protection / 2;
-            } else if (character.getClass().getName() == new Druid().getClass().getName()) {
+            //SER316 TASK 2 SPOTBUGS FIX
+            } else if (character.getClass().getName().equals(new Druid().getClass().getName())) {
                 character.damage += 10;
                 character.speed += 0.25;
                 character.protection = character.protection += 2;
-            } else if (character.getClass().getName() == new Ranger().getClass().getName()) {
+            //SER316 TASK 2 SPOTBUGS FIX
+            } else if (character.getClass().getName().equals(new Ranger().getClass().getName())) {
                 character.damage += character.damage % 10;
                 character.speed += 0.5;
                 character.protection += character.protection % 5;
-            } else if (character.getClass().getName() == new Rogue().getClass().getName()) {
+            //SER316 TASK 2 SPOTBUGS FIX
+            } else if (character.getClass().getName().equals(new Rogue().getClass().getName())) {
                 character.damage += character.damage / 3;
                 character.speed += 1.25;
                 character.protection += 3;
-            } else if (character.getClass().getName() == new Wizard().getClass().getName()) {
+            //SER316 TASK 2 SPOTBUGS FIX
+            } else if (character.getClass().getName().equals(new Wizard().getClass().getName())) {
                 character.damage += 5;
                 character.speed += 1;
                 character.protection += 1;
@@ -273,7 +280,7 @@ public class GamePlay implements GamePlayInterface {
     @Override
     public int play() {
         int startingExperience = player.experience;
-        for (Character opponent : Opponents) {
+        for (Character opponent : opponents) {
             //determine order of attack and give experience points for attacking first
             Character[] orderOfAttack = new Character[2];
             if (player.speed > opponent.speed) {
@@ -294,10 +301,10 @@ public class GamePlay implements GamePlayInterface {
         }
 
         // remove opponents that have <= 0 health
-        for (int o=0; o < Opponents.size(); o++) {
-            if (Opponents.get(o).health <= 0) {
-                System.out.println(Opponents.get(o).getClass().getName() + " removed\n");
-                removeOpponent(Opponents.get(o));
+        for (int o=0; o < opponents.size(); o++) {
+            if (opponents.get(o).health <= 0) {
+                System.out.println(opponents.get(o).getClass().getName() + " removed\n");
+                removeOpponent(opponents.get(o));
                 o--;
             }
         }

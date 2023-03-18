@@ -35,7 +35,7 @@ public class Main {
 
         System.out.println("**** GAME C ****");
         GamePlay gamePlay2 = new GamePlay(new Barbarian(), new Wizard());
-        gamePlay2.Opponents.get(0).health = 5;
+        gamePlay2.opponents.get(0).health = 5;
         for (int round = 1; round < 9; round++) {
             System.out.println("\tRound " + round);
             if (gamePlay2.player.health > 0) {

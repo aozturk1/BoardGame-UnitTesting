@@ -60,7 +60,7 @@ public class WhiteBoxGiven {
         Character Bar = new Barbarian();
         Character Bar2 = new Barbarian();
         GamePlay game = new GamePlay(Bar, Bar2);
-        game.Opponents.remove(Bar2);
+        game.opponents.remove(Bar2);
 
         assertEquals(0, game.play());
     }
@@ -108,10 +108,10 @@ public class WhiteBoxGiven {
         Character Bar2 = new Barbarian();
         Bar2.health = 0;
         GamePlay game = new GamePlay(Bar, Bar2);
-        int opponentCountBefore = game.Opponents.size();
+        int opponentCountBefore = game.opponents.size();
 
         assertEquals(0, game.play());
-        assertEquals(1, opponentCountBefore - game.Opponents.size());
+        assertEquals(1, opponentCountBefore - game.opponents.size());
     }
 
     //Description Based Testing: Then the characters level up -- if health > 0
@@ -138,10 +138,10 @@ public class WhiteBoxGiven {
         Character Bar = new Barbarian();
         Character Bar2 = new Barbarian();
         GamePlay game = new GamePlay(Bar, Bar2);
-        int opponentCountBefore = game.Opponents.size();
+        int opponentCountBefore = game.opponents.size();
         Character Bar3 = new Barbarian();
         game.addOpponent(Bar3);
-        int opponentCountAfter = game.Opponents.size();
+        int opponentCountAfter = game.opponents.size();
 
         assertEquals(1, opponentCountAfter - opponentCountBefore);
     }
@@ -152,9 +152,9 @@ public class WhiteBoxGiven {
         Character Bar = new Barbarian();
         Character Bar2 = new Barbarian();
         GamePlay game = new GamePlay(Bar, Bar2);
-        int opponentCountBefore = game.Opponents.size();
+        int opponentCountBefore = game.opponents.size();
         game.removeOpponent(Bar2);
-        int opponentCountAfter = game.Opponents.size();
+        int opponentCountAfter = game.opponents.size();
 
         assertEquals(-1, opponentCountAfter - opponentCountBefore);
     }
