@@ -5,7 +5,7 @@ public class GamePlay implements GamePlayInterface {
     public Character player;
     //SER316 TASK 2 SPOTBUGS FIX
     public List<Character> opponents;
-    public List<Character> remove;
+    //public List<Character> remove;
     
     /**
      * Default constructor for Game Play.
@@ -122,7 +122,8 @@ public class GamePlay implements GamePlayInterface {
     public int takeDamage(Character character, int blowDamage) {
         int damageTaken = blowDamage - character.protection;
         int absoluteDamageTaken = Math.abs(damageTaken);
-        int absoluteDamageTakenFloored = (int) Math.floor(absoluteDamageTaken / 2);
+        //SER316 TASK 2 SPOTBUGS FIX
+        int absoluteDamageTakenFloored = (int) Math.floor((double) absoluteDamageTaken / 2);
         //if character protection is greater than blowDamage
         if (damageTaken < 0) {
             character.health += absoluteDamageTakenFloored;
@@ -172,7 +173,8 @@ public class GamePlay implements GamePlayInterface {
             } else if (character.getClass().equals(Druid.class)) {
                 character.damage += 10;
                 character.speed += 0.25;
-                character.protection = character.protection += 2;
+                //SER316 TASK 2 SPOTBUGS FIX
+                character.protection += 2;
             //SER316 TASK 2 SPOTBUGS FIX
             } else if (character.getClass().equals(Ranger.class)) {
                 character.damage += character.damage % 10;
@@ -196,7 +198,9 @@ public class GamePlay implements GamePlayInterface {
             levelUp(character);
         }
         boolean test;
-        return test = false;
+        //SER316 TASK 2 SPOTBUGS FIX
+        test = false;
+        return test;
     }
 
     /**
