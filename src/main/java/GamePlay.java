@@ -292,6 +292,7 @@ public class GamePlay implements GamePlayInterface {
                 orderOfAttack[1] = opponent;
                 player.experience += Math.ceil(player.speed - opponent.speed);
                 } else {
+
                 //changed 271 to [0] from [1] and 272 to [1] from [0]
                 //changed this because otherwise speed doesn't determine the order of attack(player always go first)
                 orderOfAttack[0] = opponent;
