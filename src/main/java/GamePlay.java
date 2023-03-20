@@ -21,7 +21,7 @@ public class GamePlay implements GamePlayInterface {
     public GamePlay(Character character) {
         this.player = character;
         this.Opponents = new LinkedList<>();
-        addOpponent(new Wizard());
+        AddOpponent(new Wizard());
         this.Opponents.add(new Bard());
         this.Opponents.add(new Druid());
         this.Opponents.add(new Rogue());
@@ -49,7 +49,7 @@ public class GamePlay implements GamePlayInterface {
      * @return true if successful, false otherwise
      */
     @Override
-    public boolean addOpponent(Character opponent) {
+    public boolean AddOpponent(Character opponent) {
         if (this.Opponents.add(opponent)) return true;
         else return false;
     }
@@ -134,7 +134,7 @@ public class GamePlay implements GamePlayInterface {
             }else if(character.getClass().getName() == new Druid().getClass().getName()){
                 character.damage += 10;
                 character.speed += 0.25;
-                character.protection = character.protection += 2;
+                character.protection += 2;
             }else if(character.getClass().getName() == new Ranger().getClass().getName()){
                 character.damage += character.damage%10;
                 character.speed += 0.5;
@@ -213,8 +213,8 @@ public class GamePlay implements GamePlayInterface {
                 orderOfAttack[1] = opponent;
                 player.experience += Math.ceil(player.speed - opponent.speed);
                 } else {
-                orderOfAttack[1] = opponent;
-                orderOfAttack[0] = player;
+                orderOfAttack[0] = opponent;
+                orderOfAttack[1] = player;
                 opponent.experience += Math.ceil(opponent.speed - player.speed);
              }
 
