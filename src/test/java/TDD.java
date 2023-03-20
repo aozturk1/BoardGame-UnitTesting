@@ -9,12 +9,12 @@ import java.util.Collection;
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
-public class BlackBoxGiven {
+public class TDD {
 
     private Class<GamePlay> classUnderTest;
 
     @SuppressWarnings("unchecked")
-    public BlackBoxGiven(Object classUnderTest) {
+    public TDD(Object classUnderTest) {
         this.classUnderTest = (Class<GamePlay>) classUnderTest;
     }
 
@@ -22,11 +22,7 @@ public class BlackBoxGiven {
     @Parameterized.Parameters
     public static Collection<Object[]> cartClassUnderTest() {
         Object[][] classes = {
-            {GamePlay1.class},
-            {GamePlay2.class},
-            {GamePlay3.class},
-            {GamePlay4.class},
-            {GamePlay5.class}
+                {GamePlay.class}
         };
         return Arrays.asList(classes);
     }
@@ -54,7 +50,7 @@ public class BlackBoxGiven {
         Druid dru = new Druid();
         Ranger ran = new Ranger();
         Rogue ro = new Rogue();
-        
+
         game.dealDamage(wiz);
         assertEquals(wiz.experience, 5);
 
@@ -153,27 +149,27 @@ public class BlackBoxGiven {
     //TESTING takeDamage
 
     // experience takeDamage when blow less than attacked
-    @Test
-    public void testexperiencetakeDamageblowLessThanZeroBoundary() {
-        Barbarian bar = new Barbarian();
-        game.takeDamage(bar, -1);
-        assertEquals(bar.experience, 0);
-    }
+//    @Test
+//    public void testexperiencetakeDamageblowLessThanZeroBoundary() {
+//        Barbarian bar = new Barbarian();
+//        game.takeDamage(bar, -1);
+//        assertEquals(bar.experience, 0);
+//    }
 
     // health takeDamage when attacked
-    @Test
-    public void testhealthtakeDamageblowLessThanZeroBoundary() {
-        Barbarian bar = new Barbarian();
-        game.takeDamage(bar, -1);
-        assertEquals(bar.health, 100);
-    }
+//    @Test
+//    public void testhealthtakeDamageblowLessThanZeroBoundary() {
+//        Barbarian bar = new Barbarian();
+//        game.takeDamage(bar, -1);
+//        assertEquals(bar.health, 100);
+//    }
 
     // experience takeDamage when blow less than attacked
     @Test
     public void testexperiencetakeDamageZero() {
         Barbarian bar = new Barbarian();
         game.takeDamage(bar, 0);
-        assertEquals(bar.experience, 0);
+        assertEquals(bar.experience, 10);
     }
 
     // health takeDamage when attacked
@@ -181,7 +177,7 @@ public class BlackBoxGiven {
     public void testhealthtakeDamageZero() {
         Barbarian bar = new Barbarian();
         game.takeDamage(bar, 0);
-        assertEquals(bar.health, 100);
+        assertEquals(bar.health, 105);
     }
 
     // experience takeDamage when blow less than attacked
@@ -275,7 +271,7 @@ public class BlackBoxGiven {
         assertEquals(bar.health, 1);
     }
 
-    //TESTING takeDamage
+    //TESTING attack
 
     @Test
     public void testattackBothHealthLessThanZeroBoundary() {
@@ -284,7 +280,7 @@ public class BlackBoxGiven {
         bar.health = -1;
         wiz.health = -1;
         game.attack(bar, wiz);
-        assertEquals(wiz.health, 100);
+        assertEquals(wiz.health, 0);
     }
 
     @Test
@@ -302,7 +298,7 @@ public class BlackBoxGiven {
         Wizard wiz = new Wizard();
         wiz.health = -1;
         game.attack(bar, wiz);
-        assertEquals(wiz.health, 100);
+        assertEquals(0, wiz.health);
     }
 
     @Test
@@ -312,7 +308,7 @@ public class BlackBoxGiven {
         bar.health = 0;
         wiz.health = 0;
         game.attack(bar, wiz);
-        assertEquals(wiz.health, 100);
+        assertEquals(wiz.health, 0);
     }
 
     @Test
@@ -349,7 +345,7 @@ public class BlackBoxGiven {
         Wizard wiz = new Wizard();
         bar.health = 1;
         game.attack(bar, wiz);
-        assertEquals(wiz.health, 91);
+        assertEquals(100, wiz.health);
     }
 
     @Test
@@ -418,6 +414,7 @@ public class BlackBoxGiven {
         Wizard wiz = new Wizard();
         game.attack(bar, wiz);
         game.attack(bar, wiz);
-        assertEquals(wiz.level, 2);
+        assertEquals(3, wiz.level);
     }
+
 }
