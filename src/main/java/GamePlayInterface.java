@@ -1,6 +1,6 @@
 public interface GamePlayInterface {
 
-    public boolean addOpponent(Character opponent);
+    public boolean AddOpponent(Character opponent);
 
     public boolean removeOpponent(Character opponent);
 
