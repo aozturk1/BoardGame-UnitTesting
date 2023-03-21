@@ -294,11 +294,12 @@ public class GamePlay implements GamePlayInterface {
                 } else {
 
                 //changed 271 to [0] from [1] and 272 to [1] from [0]
-                //changed this because otherwise speed doesn't determine the order of attack(player always go first)
+                //changed this because otherwise speed doesn't determine the order of
+                //attack(player always go first)
                 orderOfAttack[0] = opponent;
                 orderOfAttack[1] = player;
                 opponent.experience += Math.ceil(opponent.speed - player.speed);
-             }
+            }
 
             // attack in order
             attack(orderOfAttack[0], orderOfAttack[1]);
@@ -306,7 +307,7 @@ public class GamePlay implements GamePlayInterface {
         }
 
         // remove opponents that have <= 0 health
-        for (int o=0; o < opponents.size(); o++) {
+        for (int o = 0; o < opponents.size(); o++) {
             if (opponents.get(o).health <= 0) {
                 System.out.println(opponents.get(o).getClass().getName() + " removed\n");
                 removeOpponent(opponents.get(o));
