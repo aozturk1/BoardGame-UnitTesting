@@ -159,49 +159,33 @@ public class GamePlay implements GamePlayInterface {
             character.pointsPerLevel *= 2; // need more points to level up next time
             character.health = 100; // level up resets health
 
-            //SER316 TASK 2 SPOTBUGS FIX
+            List<LevelUpCharacter> levelUpOpportunities = new ArrayList<>();
             if (character.getClass().equals(Barbarian.class)) {
-                character.damage += 10;
-                character.speed = character.speed + 0.25;
-                character.protection += 2;
-            //SER316 TASK 2 SPOTBUGS FIX
+                levelUpOpportunities.add(new BarbarianLevelUpCharacter());
             } else if (character.getClass().equals(Bard.class)) {
-                character.damage += character.damage / 2;
-                character.speed += 0.5;
-                character.protection += character.protection / 2;
-            //SER316 TASK 2 SPOTBUGS FIX
+                levelUpOpportunities.add(new BardLevelUpCharacter());
             } else if (character.getClass().equals(Druid.class)) {
-                character.damage += 10;
-                character.speed += 0.25;
-                //SER316 TASK 2 SPOTBUGS FIX
-                character.protection += 2;
-            //SER316 TASK 2 SPOTBUGS FIX
+                levelUpOpportunities.add(new DruidLevelUpCharacter());
             } else if (character.getClass().equals(Ranger.class)) {
-                character.damage += character.damage % 10;
-                character.speed += 0.5;
-                character.protection += character.protection % 5;
-            //SER316 TASK 2 SPOTBUGS FIX
+                levelUpOpportunities.add(new RangerLevelUpCharacter());
             } else if (character.getClass().equals(Rogue.class)) {
-                character.damage += character.damage / 3;
-                character.speed += 1.25;
-                character.protection += 3;
-            //SER316 TASK 2 SPOTBUGS FIX
+                levelUpOpportunities.add(new RogueLevelUpCharacter());
             } else if (character.getClass().equals(Wizard.class)) {
-                character.damage += 5;
-                character.speed += 1;
-                character.protection += 1;
+                levelUpOpportunities.add(new WizardLevelUpCharacter());
             } else {
-                character.damage++;
-                character.speed += 0.25;
-                character.protection++;
+                levelUpOpportunities.add(new DefaultLevelUpCharacter());
             }
+
+            for (LevelUpCharacter opportunity : levelUpOpportunities) {
+                opportunity.applyLevelUp(character);
+            }
+
             levelUp(character);
         }
-        boolean test;
-        //SER316 TASK 2 SPOTBUGS FIX
-        test = false;
-        return test;
+
+        return false;
     }
+
 
     /**
      * Function that facilitates the attacker dealing damage to their opponent
